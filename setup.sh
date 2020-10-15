@@ -25,9 +25,9 @@ kubectl apply -f srcs/metallb-system.yaml
 # docker build -t mynginx srcs/nginx/
 
 # Create an nginx deployment and then expose the service via the loadbalancer
-# kubectl apply -f srcs/nginx.yaml
-kubectl create deployment mynginx --image=nginx --replicas=1
-kubectl expose deployment mynginx --port 80 --type LoadBalancer
+kubectl apply -f srcs/nginx.yaml
+# kubectl create deployment mynginx --image=nginx --replicas=1
+# kubectl expose deployment mynginx --port 80 --type LoadBalancer
 
 
 
