@@ -5,8 +5,8 @@ ln -s ~/goinfre/.minikube ~/.minikube
 minikube start --vm-driver=virtualbox \
 				--addons metalldb \
 				--addons dashboard \
+				--cpus=2 --memory 4000
 				# --addons metrics-server\
-				# --cpus=2 --memory 3000
 
 # Install metallb by manifest
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/namespace.yaml
@@ -26,8 +26,9 @@ kubectl apply -f srcs/metallb-system.yaml
 
 # Create an nginx deployment and then expose the service via the loadbalancer
 kubectl apply -f srcs/nginx.yaml
-# kubectl create deployment mynginx --image=nginx --replicas=1
-# kubectl expose deployment mynginx --port 80 --type LoadBalancer
+kubectl apply -f srcs/mysql.yaml
+kubectl apply -f srcs/phpmyadmin.yaml
+kubectl apply -f srcs/wordpress.yaml
 
 
 

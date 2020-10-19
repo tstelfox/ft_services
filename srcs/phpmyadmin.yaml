@@ -7,8 +7,9 @@ spec:
   selector:
     app: phpmyadmin
   ports:
-  - port: 5000
-    targetPort: 5000
+  - port: 80
+    targetPort: 80
+    protocol: TCP
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -30,7 +31,22 @@ spec:
         - name: phpmyadmin
           image: phpmyadmin/phpmyadmin
           ports:
-          - containerPort: 5000
-          envFrom:
-            - secretRef:
+          - containerPort: 80
+          env:
+          - name: PMA_HOST
+            value: mysql-service
+          - name: PMA_PORT
+            value: "3306"
+          # - name: MYSQL_ROOT_USERNAME
+          #   valueFrom:
+          #     secretKeyRef:
+          #       name: mysql-secret
+          #       key: username
+          - name: MYSQL_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
                 name: mysql-secret
+                key: password
+          # From:
+          #   - secretRef:
+          #       name: mysql-secret
