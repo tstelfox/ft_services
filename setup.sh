@@ -17,8 +17,6 @@ kubectl create secret generic -n metallb-system memberlist --from-literal=secret
 # Apply the metallb config file
 kubectl apply -f srcs/metallb-system.yaml
 
-# Connecting the local docker environment into kubernetes
-# eval $(minikube docker-env)
 
 # Building the local nginx image god beast
 # docker system prune -a -y
@@ -31,6 +29,8 @@ kubectl apply -f srcs/phpmyadmin.yaml
 kubectl apply -f srcs/wordpress.yaml
 
 
+# Connecting the local docker environment into kubernetes
+eval $(minikube docker-env)
 
-
+kubectl apply -f srcs/ftps.yaml
 
