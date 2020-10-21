@@ -6,7 +6,11 @@ spec:
   selector:
     app: ftps
   ports:
-    - port: 21
+    - name: ftp-data
+      port: 20
+      targetPort: 21
+    - name: ftp-container
+      port: 21
       targetPort: 21
       protocol: TCP
   type: LoadBalancer
@@ -31,10 +35,11 @@ spec:
         app: ftps
     spec:
       containers:
-      - image: ftps
+      - image: myftps
         name: ftps
         ports:
         - containerPort: 21
+        - containerPort: 20
         imagePullPolicy: Never
         resources: {}
 status: {}

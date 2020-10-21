@@ -19,4 +19,4 @@ RUN mkdir -p /tarlo
 
 EXPOSE 20 21
 
-# ENTRYPOINT ["/tmp/setup.sh"]
+ENTRYPOINT ["/tmp/setup.sh"]

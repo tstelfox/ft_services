@@ -14,23 +14,26 @@ kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manife
 # On first install only
 kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
 
+eval $(minikube docker-env)
 # Apply the metallb config file
 kubectl apply -f srcs/metallb-system.yaml
 
 
 # Building the local nginx image god beast
 # docker system prune -a -y
-# docker build -t mynginx srcs/nginx/
+docker rmi myftps
+docker build -t myftps srcs/ftps/
 
 # Create an nginx deployment and then expose the service via the loadbalancer
 kubectl apply -f srcs/nginx.yaml
 kubectl apply -f srcs/mysql.yaml
 kubectl apply -f srcs/phpmyadmin.yaml
 kubectl apply -f srcs/wordpress.yaml
+kubectl apply -f srcs/grafana.yaml
+kubectl apply -f srcs/influxdb.yaml
 
 
 # Connecting the local docker environment into kubernetes
-eval $(minikube docker-env)
 
 kubectl apply -f srcs/ftps.yaml
 
