@@ -9,3 +9,6 @@ kubectl apply -f srcs/phpmyadmin.yaml
 kubectl apply -f srcs/wordpress.yaml
 
 kubectl apply -f srcs/ftps.yaml
+kubectl apply -f srcs/grafana.yaml
+kubectl apply -f srcs/influxdb.yaml
+kubectl apply -f srcs/telegraf.yaml
