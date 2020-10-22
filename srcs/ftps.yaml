@@ -8,7 +8,7 @@ spec:
   ports:
     - name: ftp-data
       port: 20
-      targetPort: 21
+      targetPort: 20
     - name: ftp-container
       port: 21
       targetPort: 21

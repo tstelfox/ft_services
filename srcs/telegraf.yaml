@@ -1,40 +1,40 @@
-# apiVersion: v1
-# kind: Secret
-# metadata:
-#   name: telegraf-secrets
-# type: Opaque
-# stringData:
-#   INFLUXDB_DB: monitoring
-#   INFLUXDB_URL: http://influxdb-service:8086
-#   INFLUXDB_ADMIN_USER: admin
-#   INFLUXDB_USER_PASSWORD: please
-# ---
 apiVersion: v1
-kind: ConfigMap
+kind: Secret
 metadata:
-  name: telegraf-config
-data:
-  telegraf.conf: |+
-    [[outputs.influxdb-service]]
-      urls = ["$INFLUXDB_URL"]
-      database = "$INFLUXDB_DB"
-      username = "$INFLUXDB_USER"
-      password = "$INFLUXDB_USER_PASSWORD"
-# Statsd Server
-    [[inputs.statsd]]
-      max_tcp_connections = 250
-      tcp_keep_alive = false
-      service_address = ":8125"
-      delete_gauges = true
-      delete_counters = true
-      delete_sets = true
-      delete_timings = true
-      metric_separator = "."
-      allowed_pending_messages = 10000
-      percentile_limit = 1000
-      parse_data_dog_tags = true 
-      read_buffer_size = 65535
+  name: telegraf-secrets
+type: Opaque
+stringData:
+  INFLUXDB_DB: monitoring
+  INFLUXDB_URL: http://influxdb-service:8086
+  INFLUXDB_ADMIN_USER: admin
+  INFLUXDB_USER_PASSWORD: password
 ---
+# apiVersion: v1
+# kind: ConfigMap
+# metadata:
+#   name: telegraf-config
+# data:
+#   telegraf.conf: |+
+#     [[outputs.influxdb-service]]
+#       urls = ["$INFLUXDB_URL"]
+#       database = "$INFLUXDB_DB"
+#       username = "$INFLUXDB_USER"
+#       password = "$INFLUXDB_USER_PASSWORD"
+# # Statsd Server
+#     [[inputs.statsd]]
+#       max_tcp_connections = 250
+#       tcp_keep_alive = false
+#       service_address = ":8125"
+#       delete_gauges = true
+#       delete_counters = true
+#       delete_sets = true
+#       delete_timings = true
+#       metric_separator = "."
+#       allowed_pending_messages = 10000
+#       percentile_limit = 1000
+#       parse_data_dog_tags = true 
+#       read_buffer_size = 65535
+# ---
 apiVersion: v1
 kind: Service
 metadata:
@@ -73,15 +73,18 @@ spec:
           name: telegraf
           ports:
           - containerPort: 8125
-          env:
-            - name: INFLUXDB_ADMIN_USER
-              value: admin
-            - name: INFLUX_URL
-              value: "http://influxdb-service:8060"
-            - name: INFLUXDB_USER_PASSWORD
-              value: please
-            - name: INFLUX_SKIP_DATABASE_CREATION
-              value: "false"
+          envFrom:
+            - secretRef:
+                name: telegraf-secrets
+          # env:
+          #   - name: INFLUXDB_ADMIN_USER
+          #     value: admin
+          #   - name: INFLUX_URL
+          #     value: "http://influxdb-service:8060"
+          #   - name: INFLUXDB_USER_PASSWORD
+          #     value: please
+          #   - name: INFLUX_SKIP_DATABASE_CREATION
+          #     value: "false"
           volumeMounts:
             - name: telegraf-config-volume
               mountPath: /etc/telegraf/telegraf.conf

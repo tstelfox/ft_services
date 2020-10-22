@@ -48,19 +48,22 @@ spec:
         ports:
         - containerPort: 8060
         env:
-        - name: INFLUXDB_ADMIN_USER
-          valueFrom:
-            secretKeyRef:
-              name: influx-secret
-              key: admin
-        - name: INFLUXDB_USER_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: influx-secret
-              key: password
         - name: INFLUXDB_DATABASE
           value: monitoring
-        # INFLUXDB_HOST
+        - name: INFLUXDB_USERNAME
+          value: admin
+          # valueFrom:
+          #   secretKeyRef:
+          #     name: influx-secret
+          #     key: admin
+        - name: INFLUXDB_PASSWORD
+          value: password
+          # valueFrom:
+          #   secretKeyRef:
+          #     name: influx-secret
+          #     key: password
+        - name: INFLUXDB_HOST
+          value: influxdb
         volumeMounts:
         - name: influx-persistent-storage
           mountPath: /var/lib/influxdb
