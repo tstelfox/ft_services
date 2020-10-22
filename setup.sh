@@ -22,18 +22,20 @@ kubectl apply -f srcs/metallb-system.yaml
 # Building the local nginx image god beast
 # docker system prune -a -y
 docker rmi myftps
-docker build -t myftps srcs/ftps/
+docker rmi mynginx
+# docker build -t myftps srcs/ftps/
+docker build -t mynginx srcs/nginx/
 
 # Create an nginx deployment and then expose the service via the loadbalancer
 kubectl apply -f srcs/nginx.yaml
-kubectl apply -f srcs/mysql.yaml
-kubectl apply -f srcs/phpmyadmin.yaml
-kubectl apply -f srcs/wordpress.yaml
-kubectl apply -f srcs/grafana.yaml
-kubectl apply -f srcs/influxdb.yaml
+# kubectl apply -f srcs/mysql.yaml
+# kubectl apply -f srcs/phpmyadmin.yaml
+# kubectl apply -f srcs/wordpress.yaml
+# kubectl apply -f srcs/grafana.yaml
+# kubectl apply -f srcs/influxdb.yaml
 
 
 # Connecting the local docker environment into kubernetes
 
-kubectl apply -f srcs/ftps.yaml
+# kubectl apply -f srcs/ftps.yaml
 
