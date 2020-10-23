@@ -1,4 +1,3 @@
-clearhome
 kubectl delete svc --all
 
 kubectl delete deployments --all
@@ -10,8 +9,8 @@ docker build -t mynginx srcs/nginx/
 
 # The deployments
 kubectl apply -f srcs/nginx.yaml
-# kubectl apply -f srcs/mysql.yaml
-# kubectl apply -f srcs/phpmyadmin.yaml
+kubectl apply -f srcs/mysql.yaml
+kubectl apply -f srcs/phpmyadmin.yaml
 # kubectl apply -f srcs/wordpress.yaml
 
 # kubectl apply -f srcs/ftps.yaml

@@ -28,8 +28,8 @@ docker build -t mynginx srcs/nginx/
 
 # Create an nginx deployment and then expose the service via the loadbalancer
 kubectl apply -f srcs/nginx.yaml
-# kubectl apply -f srcs/mysql.yaml
-# kubectl apply -f srcs/phpmyadmin.yaml
+kubectl apply -f srcs/mysql.yaml
+kubectl apply -f srcs/phpmyadmin.yaml
 # kubectl apply -f srcs/wordpress.yaml
 # kubectl apply -f srcs/grafana.yaml
 # kubectl apply -f srcs/influxdb.yaml

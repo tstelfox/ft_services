@@ -7,8 +7,9 @@ spec:
   selector:
     app: phpmyadmin
   ports:
-  - port: 80
-    targetPort: 80
+  - name: http
+    port: 8080
+    targetPort: 8080
     protocol: TCP
 ---
 apiVersion: apps/v1
