@@ -5,7 +5,7 @@ ln -s ~/goinfre/.minikube ~/.minikube
 minikube start --vm-driver=virtualbox \
 				--addons metalldb \
 				--addons dashboard \
-				--cpus=2 --memory 4000
+				# --cpus=2 --memory 2000
 				# --addons metrics-server\
 
 # Install metallb by manifest

@@ -1,3 +1,4 @@
+clearhome
 kubectl delete svc --all
 
 kubectl delete deployments --all

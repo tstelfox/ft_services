@@ -1,27 +1,23 @@
-FROM alpine:3.12
+FROM alpine:latest
 
-RUN apk update && \
-	apk add nginx && apk add openssl
+RUN apk update --no-cache && \
+	apk add nginx
 
-# Creating new user and making dir for html files
 RUN adduser -D -g 'www' www && \
 	mkdir /www && \
-	mkdir -p /var/run/nginx && \
 	chown -R www:www /var/lib/nginx && \
 	chown -R www:www /www
 
-COPY ./srcs/index.html /var/www/localhost/htdocs/
+COPY index.html /var/www/localhost/htdocs/
 
-COPY ./srcs/nginx.conf /etc/nginx/nginx.conf
+COPY nginx.conf /etc/nginx/nginx.conf
 
-# Generating ssl shit
-RUN openssl genrsa -out /etc/ssl/certs/localhost.key 2048 && \
-	openssl req -x509 -days 356 -nodes -new -key /etc/ssl/certs/localhost.key \
-	-subj '/C=NL/ST=NH/L=Amsterdam/O=Codam/CN=localhost' -out /etc/ssl/certs/localhost.crt
+# SSL certificates
+COPY srcs/localhost.key /etc/ssl/certs/
+COPY srcs/localhost.cert /etc/ssl/certs/
 
+RUN mkdir -p /run/nginx
 
 EXPOSE 80 443
 
-CMD tail -f /dev/null
-
-
+CMD	["nginx", "-g", "daemon off;"]
