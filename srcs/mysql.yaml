@@ -22,8 +22,8 @@ metadata:
     name: mysql-secret
 type: Opaque
 data:
-    username: eWVldA==
-    password: cGxlYXNl
+    username: YWRtaW4=
+    password: a3Jha2Vu
 ---
 apiVersion: apps/v1
 kind: Deployment

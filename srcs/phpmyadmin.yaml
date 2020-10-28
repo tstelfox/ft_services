@@ -8,8 +8,8 @@ spec:
     app: phpmyadmin
   ports:
   - name: http
-    port: 8080
-    targetPort: 8080
+    port: 5000
+    targetPort: 5000
     protocol: TCP
 ---
 apiVersion: apps/v1
@@ -30,9 +30,10 @@ spec:
     spec:
       containers:
         - name: phpmyadmin
-          image: phpmyadmin/phpmyadmin
+          image: myphp
+          imagePullPolicy: Never
           ports:
-          - containerPort: 80
+          - containerPort: 5000
           env:
           - name: PMA_HOST
             value: mysql-service
