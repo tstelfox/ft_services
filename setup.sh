@@ -22,8 +22,8 @@ kubectl apply -f srcs/metallb-system.yaml
 # Building the local nginx image god beast
 # docker system prune -a -y
 # docker rmi myftps
-docker rmi mynginx
-docker rmi myphp
+# docker rmi mynginx
+# docker rmi myphp
 # docker build -t myftps srcs/ftps/
 docker build -t mynginx srcs/nginx/
 docker build -t myphp srcs/phpmyadmin/

@@ -8,11 +8,13 @@ kubectl delete configmap --all
 
 # kubectl delete pods --all
 
-# docker system prune -a -f
+# docker rmi mynginx
+docker rmi myphp
 # docker build -t mynginx srcs/nginx/
+# docker build -t myphp srcs/phpmyadmin/
 
 # The deployments
-kubectl apply -f srcs/nginx.yaml
+# kubectl apply -f srcs/nginx.yaml
 kubectl apply -f srcs/mysql.yaml
 kubectl apply -f srcs/phpmyadmin.yaml
 # kubectl apply -f srcs/wordpress.yaml

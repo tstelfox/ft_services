@@ -49,6 +49,7 @@ spec:
               secretKeyRef:
                 name: mysql-secret
                 key: password
+            # value: kraken
           # From:
           #   - secretRef:
           #       name: mysql-secret
