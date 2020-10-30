@@ -6,11 +6,14 @@ kubectl delete secrets --all
 
 kubectl delete configmap --all
 
+kubectl delete pv --all
+
 # kubectl delete pods --all
 
 # docker rmi mynginx
 docker rmi myphp
 docker rmi mysql
+docker system prune -a -f
 # docker build -t mynginx srcs/nginx/
 # docker build -t myphp srcs/phpmyadmin/
 docker build -t mysql srcs/mysql/

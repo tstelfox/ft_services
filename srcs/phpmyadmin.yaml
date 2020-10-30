@@ -39,17 +39,3 @@ spec:
             value: mysql-service
           - name: PMA_PORT
             value: "3306"
-          # - name: MYSQL_ROOT_USERNAME
-          #   valueFrom:
-          #     secretKeyRef:
-          #       name: mysql-secret
-          #       key: username
-          - name: MYSQL_ROOT_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: mysql-secret
-                key: password
-            # value: kraken
-          # From:
-          #   - secretRef:
-          #       name: mysql-secret

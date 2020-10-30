@@ -29,7 +29,7 @@ $i++;
 $cfg['Servers'][$i]['auth_type'] = 'cookie';
 $cfg['TempDir'] = '/tmp';
 /* Server parameters */
-$cfg['Servers'][$i]['user'] = 'root';
+$cfg['Servers'][$i]['user'] = 'mysql';
 $cfg['Servers'][$i]['password'] = 'kraken';
 $cfg['Servers'][$i]['port'] = '3306';
 
