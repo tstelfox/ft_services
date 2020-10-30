@@ -27,6 +27,7 @@ kubectl apply -f srcs/metallb-system.yaml
 # docker build -t myftps srcs/ftps/
 docker build -t mynginx srcs/nginx/
 docker build -t myphp srcs/phpmyadmin/
+docker build -t mysql srcs/mysql/
 
 # Create an nginx deployment and then expose the service via the loadbalancer
 kubectl apply -f srcs/nginx.yaml

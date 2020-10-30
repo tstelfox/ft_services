@@ -10,8 +10,10 @@ kubectl delete configmap --all
 
 # docker rmi mynginx
 docker rmi myphp
+docker rmi mysql
 # docker build -t mynginx srcs/nginx/
 # docker build -t myphp srcs/phpmyadmin/
+docker build -t mysql srcs/mysql/
 
 # The deployments
 # kubectl apply -f srcs/nginx.yaml
