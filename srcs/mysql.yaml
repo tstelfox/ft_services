@@ -49,7 +49,7 @@ spec:
           value: wordpress
         - name: DB_USER
           value: mysql
-        - name: DBL_PASS
+        - name: DB_PASS
           value: kraken
         - name: MYSQL_HOME
           value: "/etc/"
