@@ -1,19 +1,22 @@
-FROM alpine:latest
+FROM alpine
 
-RUN apk update && apk upgrade --available
-RUN apk add mysql mysql-client && \
-    rm -rf /var/cache/apk/*
+RUN apk add mysql mysql-client
 
-RUN addgroup mysql mysql
-COPY srcs/my.cnf /etc/my.cnf
-RUN chown -R mysql:root /var/lib/mysql
-
-# ENV MYSQL_ROOT_PASSWORD=kraken
-
-VOLUME ["/var/lib/mysql"]
-
-EXPOSE 3306
+COPY srcs/my.cnf /etc/mysql/
 
 COPY srcs/start.sh /tmp/start.sh
 RUN chmod +x /tmp/start.sh
-CMD sh tmp/start.sh
+
+VOLUME /var/lib/mysql
+ENTRYPOINT ["/bin/sh", "/tmp/start.sh"]
+
+# FROM alpine
+
+# RUN	apk add mysql mysql-client
+
+# COPY srcs/start.sh /tmp/startup.sh
+# RUN chmod +x /tmp/startup.sh
+# COPY srcs/my.cnf /etc/
+# VOLUME /var/lib/mysql
+
+# ENTRYPOINT ["/bin/sh", "/tmp/startup.sh"]
