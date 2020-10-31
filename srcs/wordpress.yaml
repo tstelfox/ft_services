@@ -6,41 +6,41 @@ metadata:
     app: wordpress
 spec:
   ports:
-    - port: 80
-      targetPort: 80
+    - port: 5050
+      targetPort: 5050
       protocol: TCP
   selector:
     app: wordpress
     # tier: frontend
   type: LoadBalancer
 ---
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: wordpress-pv
-  labels:
-    type: local
-spec:
-  storageClassName: manual
-  capacity:
-    storage: 1Gi
-  accessModes:
-    - ReadWriteOnce
-  hostPath:
-    path: "/var/www/html"
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: wordpress-pv-claim
-spec:
-  storageClassName: manual
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 1Gi
----
+# apiVersion: v1
+# kind: PersistentVolume
+# metadata:
+#   name: wordpress-pv
+#   labels:
+#     type: local
+# spec:
+#   storageClassName: manual
+#   capacity:
+#     storage: 1Gi
+#   accessModes:
+#     - ReadWriteOnce
+#   hostPath:
+#     path: "/var/www/html"
+# ---
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: wordpress-pv-claim
+# spec:
+#   storageClassName: manual
+#   accessModes:
+#     - ReadWriteOnce
+#   resources:
+#     requests:
+#       storage: 1Gi
+# ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -61,24 +61,28 @@ spec:
         app: wordpress
     spec:
       containers:
-      - image: wordpress
+      - image: mywordpress
         name: wordpress
+        imagePullPolicy: Never
         ports:
-        - containerPort: 80
+        - containerPort: 5050
           name: wordpress
         env:
+        - name: MYSQL_DB
+          value: wordpress
+        - name: MYSQL_USER
+          value: mysql
+        - name: MYSQL_PASS
+          value: kraken
+        - name: MYSQL_HOME
+          value: "/etc/"
         - name: WORDPRESS_DB_HOST
-          value: mysql-service 
-        - name: WORDPRESS_DB_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: mysql-secret
-              key: password
-        volumeMounts:
-        - name: wordpress-persistent
-          mountPath: /var/www/html
-      volumes:
-      - name: wordpress-persistent
-        persistentVolumeClaim:
-          claimName: wordpress-pv-claim
-status: {}
+          value: mysql-service
+#         volumeMounts:
+#         - name: wordpress-persistent
+#           mountPath: /var/www/html
+#       volumes:
+#       - name: wordpress-persistent
+#         persistentVolumeClaim:
+#           claimName: wordpress-pv-claim
+# status: {}

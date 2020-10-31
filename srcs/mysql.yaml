@@ -45,11 +45,11 @@ spec:
         imagePullPolicy: Never
         name: mysql
         env:
-        - name: DB_NAME
+        - name: MYSQL_DB
           value: wordpress
-        - name: DB_USER
+        - name: MYSQL_USER
           value: mysql
-        - name: DB_PASS
+        - name: MYSQL_PASS
           value: kraken
         - name: MYSQL_HOME
           value: "/etc/"
