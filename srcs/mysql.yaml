@@ -53,18 +53,6 @@ spec:
           value: kraken
         - name: MYSQL_HOME
           value: "/etc/"
-        # - name: MYSQL_ROOT_USERNAME
-        #   valueFrom:
-        #     secretKeyRef:
-        #       name: mysql-secret
-        #       key: username
-        # - name: MYSQL_ROOT_PASSWORD
-        #   valueFrom:
-        #     secretKeyRef:
-        #       name: mysql-secret
-        #       key: password
-        # - name: MYSQL_DB_NAME
-        #   value: wordpress
         ports:
         - containerPort: 3306
           name: mysql
