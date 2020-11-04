@@ -16,8 +16,8 @@ kubectl delete pv --all
 # docker rmi mysql
 docker system prune -a -f
 # docker build -t mynginx srcs/nginx/
-# docker build -t myphp srcs/phpmyadmin/
-# docker build -t mysql srcs/mysql/
+docker build -t myphp srcs/phpmyadmin/
+docker build -t mysql srcs/mysql/
 docker build -t mywordpress srcs/wordpress/
 
 # The deployments
