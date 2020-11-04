@@ -21,7 +21,7 @@ RUN tar -xzvf latest.tar.gz -C /www
 RUN rm -f latest.tar.gz
 RUN chown -R www:www /www/*
 # Maybe needs executable access
-RUN chmod +x -R /www/*  
+# RUN chmod +x -R /www/
 # RUN mv wordpress/* /var/www/html
 
 ENV DB_HOST="mysql-service:3306" \
