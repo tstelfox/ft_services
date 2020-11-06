@@ -12,7 +12,9 @@ spec:
     - name: ftp-container
       port: 21
       targetPort: 21
-      protocol: TCP
+    - name: pasv-port
+      port: 30000
+      targetPort: 30000
   type: LoadBalancer
 ---
 apiVersion: apps/v1
@@ -40,6 +42,7 @@ spec:
         ports:
         - containerPort: 21
         - containerPort: 20
+        - containerPort: 30000
         imagePullPolicy: Never
         resources: {}
 status: {}

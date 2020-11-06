@@ -14,8 +14,8 @@ RUN mkdir -p /var/ftps
 COPY vsftpd.conf /etc/vsftpd/vsftpd.conf
 COPY setup.sh /tmp/
 RUN chmod +x /tmp/setup.sh
-RUN mkdir -p /tarlo
+# RUN mkdir -p /tarlo
 
-EXPOSE 20 21
+EXPOSE 20 21 30000
 
 ENTRYPOINT ["/tmp/setup.sh"]
