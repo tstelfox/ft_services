@@ -48,22 +48,23 @@ spec:
         app: influxdb
     spec:
       containers:
-      - image: influxdb:latest
+      - image: myinfluxdb
         name: influxdb
+        imagePullPolicy: Never
         ports:
           - containerPort: 8086
         envFrom:
             - secretRef:
                 name: influxdb-secrets
         volumeMounts:
-          - name: influx-pv-claim
+          - name: influx-persistent-storage
             mountPath: /var/lib/influxdb
           # - name: influxdb-config
           #   mountPath: /etc/influxdb/influxdb.conf
           #   subPath: influxdb.conf
           #   readOnly: true
       volumes:
-      - name: influx-pv-claim
+      - name: influx-persistent-storage
         persistentVolumeClaim:
           claimName: influx-pv-claim
       # - name: influxdb-config
