@@ -59,17 +59,10 @@ spec:
         volumeMounts:
           - name: influx-persistent-storage
             mountPath: /var/lib/influxdb
-          # - name: influxdb-config
-          #   mountPath: /etc/influxdb/influxdb.conf
-          #   subPath: influxdb.conf
-          #   readOnly: true
       volumes:
       - name: influx-persistent-storage
         persistentVolumeClaim:
           claimName: influx-pv-claim
-      # - name: influxdb-config
-      #   configMap:
-      #     name: influxdb-config
 status: {}
 ---
 apiVersion: v1

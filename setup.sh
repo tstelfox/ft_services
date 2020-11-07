@@ -40,6 +40,7 @@ docker build -t myinfluxdb srcs/influxdb/
 # kubectl apply -f srcs/ftps.yaml
 kubectl apply -f srcs/grafana.yaml
 kubectl apply -f srcs/influxdb.yaml
+kubectl apply -f srcs/telegraf.yaml
 
 
 # Connecting the local docker environment into kubernetes
