@@ -14,33 +14,33 @@ spec:
     # tier: frontend
   type: LoadBalancer
 ---
-# apiVersion: v1
-# kind: PersistentVolume
-# metadata:
-#   name: wordpress-pv
-#   labels:
-#     type: local
-# spec:
-#   storageClassName: manual
-#   capacity:
-#     storage: 1Gi
-#   accessModes:
-#     - ReadWriteOnce
-#   hostPath:
-#     path: "/var/www/html"
-# ---
-# apiVersion: v1
-# kind: PersistentVolumeClaim
-# metadata:
-#   name: wordpress-pv-claim
-# spec:
-#   storageClassName: manual
-#   accessModes:
-#     - ReadWriteOnce
-#   resources:
-#     requests:
-#       storage: 1Gi
-# ---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: wordpress-pv
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/var/www/html"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: wordpress-pv-claim
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -78,11 +78,11 @@ spec:
           value: "/etc/"
         - name: WORDPRESS_DB_HOST
           value: mysql-service
-#         volumeMounts:
-#         - name: wordpress-persistent
-#           mountPath: /var/www/html
-#       volumes:
-#       - name: wordpress-persistent
-#         persistentVolumeClaim:
-#           claimName: wordpress-pv-claim
-# status: {}
+        volumeMounts:
+        - name: wordpress-persistent
+          mountPath: /var/www/html
+      volumes:
+      - name: wordpress-persistent
+        persistentVolumeClaim:
+          claimName: wordpress-pv-claim
+status: {}
