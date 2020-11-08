@@ -38,8 +38,8 @@ define( 'DB_CHARSET', 'utf8' );
 define( 'DB_COLLATE', '' );
 
 
-define('WP_HOME', 'http://192.168.99.222:5050' );
-define( 'WP_SITEURL', 'http://192.168.99.222:5050' );
+define('WP_HOME', 'http://192.168.99.225:5050' );
+define( 'WP_SITEURL', 'http://192.168.99.225:5050' );
 // define( 'WP_SITEURL', 'wordpress-service:5050' );
 /**#@+
  * Authentication Unique Keys and Salts.
