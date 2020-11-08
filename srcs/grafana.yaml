@@ -46,5 +46,47 @@ spec:
           value: tarlo
         - name: GF_SECURITY_ADMIN_PASSWORD
           value: kraken
-        resources: {}
+        volumeMounts:
+        - name: provisioning
+          mountPath: /usr/share/grafana/conf/provisioning
+      volumes:
+      - name: provisioning
+        configMap:
+          name: grafana-config
+          items:
+          - key: dashboards.yml
+            path: dashboards/dashboards.yml
+          - key: datasources.yml
+            path: datasources/datasources.yml
 status: {}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-config
+data:
+  datasources.yml: |
+    apiVersion: 1
+    datasources:
+    - name: InfluxDB
+      type: influxdb
+      access: proxy
+      database: telegraf
+      isDefault: true
+      user: admin
+      password: kraken
+      url: http://influxdb-service:8086
+  dashboards.yml: |
+    apiVersion: 1
+    providers:
+    - name: 'influxdb'
+      orgId: 1
+      folder: ''
+      folderUid: ''
+      type: file
+      disableDeletion: false
+      editable: true
+      updateIntervalSeconds: 10
+      allowUiUpdates: true
+      options:
+        path: /usr/share/grafana/public/dashboards
