@@ -16,17 +16,6 @@ spec:
 status:
   loadBalancer: {}
 ---
-# apiVersion: apps/v1
-# datasources:
-# - name: InfluxDB
-#   type: influxdb
-#   access: proxy
-#   database: telegraf
-#   isDefault: true
-#   user: telegraf
-#   password: pass
-#   url: http://influxdb-service:8086
-# ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:

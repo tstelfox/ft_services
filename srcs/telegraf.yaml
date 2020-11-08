@@ -308,7 +308,7 @@ metadata:
 spec:
   ports:
   - port: 4999
-    protocol: TCP
+    protocol: UDP
     targetPort: 4999
   selector:
     app: telegraf
