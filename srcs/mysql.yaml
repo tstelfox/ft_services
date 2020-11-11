@@ -15,15 +15,6 @@ spec:
 status:
   loadBalancer: {}
 ---
-# apiVersion: v1
-# kind: Secret
-# metadata:
-#     name: mysql-secret
-# type: Opaque
-# data:
-#     username: YWRtaW4=
-#     password: a3Jha2Vu
-# ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
