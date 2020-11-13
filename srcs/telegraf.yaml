@@ -333,8 +333,9 @@ spec:
         app: telegraf
     spec:
       containers:
-        - image: telegraf:latest
+        - image: mytelegraf
           name: telegraf
+          imagePullPolicy: Never
           # ports:
           # - containerPort: 8125
           # envFrom:
@@ -346,7 +347,6 @@ spec:
               subPath: telegraf.conf
             - name: docker-socket
               mountPath: /var/run/docker.sock
-          #     readOnly: true
           env:
             - name: INFLUXDB_ADMIN_USER
               value: admin

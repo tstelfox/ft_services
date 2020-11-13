@@ -37,6 +37,7 @@ docker build -t myphp srcs/phpmyadmin/
 docker build -t mywordpress srcs/wordpress/
 docker build -t myinfluxdb srcs/influxdb/
 docker build -t mygrafana srcs/grafana/
+docker build -t mytelegraf srcs/telegraf/
 
 # Create an nginx deployment and then expose the service via the loadbalancer
 kubectl apply -f srcs/nginx.yaml
@@ -46,7 +47,7 @@ kubectl apply -f srcs/wordpress.yaml
 kubectl apply -f srcs/ftps.yaml
 kubectl apply -f srcs/influxdb.yaml
 kubectl apply -f srcs/telegraf.yaml
-# kubectl apply -f srcs/grafana.yaml
+kubectl apply -f srcs/grafana.yaml
 
 
 # Connecting the local docker environment into kubernetes

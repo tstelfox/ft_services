@@ -1,7 +1,7 @@
 FROM alpine
 
-RUN apk upgrade && \
-    apk add RUN apk add telegraf --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing/
+RUN apk upgrade
+RUN apk add telegraf --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing/
 
 EXPOSE 4999
 
