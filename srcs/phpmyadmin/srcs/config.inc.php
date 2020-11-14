@@ -39,7 +39,7 @@ $cfg['Servers'][$i]['AllowNoPassword'] = true;
 
 
 # Maybe fix reverse proxy problem?
-$cfg['PmaAbsoluteUri'] = '/phpmyadmin/';
+$cfg['PmaAbsoluteUri'] = '/phpmyadmin';
 
 /**
  * phpMyAdmin configuration storage settings.

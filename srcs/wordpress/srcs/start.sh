@@ -14,4 +14,14 @@ done
 echo "Connection with Mysql established."
 
 su -c "/tmp/wpinstall.sh" - www
-nginx -g "daemon off;"
+nginx
+
+while true; do
+	sleep 10s
+	ps | grep nginx | grep master
+	if [ $? == 1 ]; then break
+	fi
+	ps | grep php-fpm | grep master
+	if [ $? == 1 ]; then break
+	fi
+done

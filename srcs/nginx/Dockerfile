@@ -13,26 +13,20 @@ COPY srcs/index.html /var/www/localhost/htdocs/
 COPY srcs/nginx.conf /etc/nginx/nginx.conf
 
 # SSH config
-RUN ssh-keygen -A
 RUN addgroup sshgroup \
 	&& adduser -D admin \
 	&& echo "admin:kraken" | chpasswd
+RUN ssh-keygen -A
 COPY srcs/sshd_config /etc/ssh/sshd_config
 
 # SSL certificates
 COPY srcs/localhost.key /etc/ssl/certs/
 COPY srcs/localhost.cert /etc/ssl/certs/
 
-# Supervisor shit lezgo then
-# RUN apk add supervisor
-# COPY srcs/supervisord.conf /etc/supervisorconfd.conf
-
 COPY srcs/startup.sh /tmp/startup.sh
 RUN chmod +x /tmp/startup.sh
-
 RUN mkdir -p /run/nginx
 
-EXPOSE 80 443 4000
+EXPOSE 80 443 22
 
 CMD sh /tmp/startup.sh
-# CMD ["sh", "-c", "/tmp/startup.sh ; /usr/bin/supervisord -c /etc/supervisord.conf"]
