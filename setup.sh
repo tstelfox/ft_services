@@ -30,24 +30,24 @@ kubectl apply -f srcs/metallb-system.yaml
 # docker rmi myftps
 # docker rmi mynginx
 # docker rmi myphp
-docker build -t myftps srcs/ftps/
+# docker build -t myftps srcs/ftps/
 docker build -t mynginx srcs/nginx/
 docker build -t mysql srcs/mysql/
 docker build -t myphp srcs/phpmyadmin/
-docker build -t mywordpress srcs/wordpress/
-docker build -t myinfluxdb srcs/influxdb/
-docker build -t mygrafana srcs/grafana/
-docker build -t mytelegraf srcs/telegraf/
+# docker build -t mywordpress srcs/wordpress/
+# docker build -t myinfluxdb srcs/influxdb/
+# docker build -t mygrafana srcs/grafana/
+# docker build -t mytelegraf srcs/telegraf/
 
 # Create an nginx deployment and then expose the service via the loadbalancer
 kubectl apply -f srcs/nginx.yaml
 kubectl apply -f srcs/mysql.yaml
 kubectl apply -f srcs/phpmyadmin.yaml
-kubectl apply -f srcs/wordpress.yaml
-kubectl apply -f srcs/ftps.yaml
-kubectl apply -f srcs/influxdb.yaml
-kubectl apply -f srcs/telegraf.yaml
-kubectl apply -f srcs/grafana.yaml
+# kubectl apply -f srcs/wordpress.yaml
+# kubectl apply -f srcs/ftps.yaml
+# kubectl apply -f srcs/influxdb.yaml
+# kubectl apply -f srcs/telegraf.yaml
+# kubectl apply -f srcs/grafana.yaml
 
 
 # Connecting the local docker environment into kubernetes

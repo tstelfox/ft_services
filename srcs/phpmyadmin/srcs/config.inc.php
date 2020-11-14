@@ -37,6 +37,10 @@ $cfg['Servers'][$i]['host'] = 'mysql-service';
 $cfg['Servers'][$i]['compress'] = false;
 $cfg['Servers'][$i]['AllowNoPassword'] = true;
 
+
+# Maybe fix reverse proxy problem?
+$cfg['PmaAbsoluteUri'] = '/phpmyadmin/';
+
 /**
  * phpMyAdmin configuration storage settings.
  */

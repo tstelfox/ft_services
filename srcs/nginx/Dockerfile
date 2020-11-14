@@ -23,6 +23,10 @@ COPY srcs/sshd_config /etc/ssh/sshd_config
 COPY srcs/localhost.key /etc/ssl/certs/
 COPY srcs/localhost.cert /etc/ssl/certs/
 
+# Supervisor shit lezgo then
+# RUN apk add supervisor
+# COPY srcs/supervisord.conf /etc/supervisorconfd.conf
+
 COPY srcs/startup.sh /tmp/startup.sh
 RUN chmod +x /tmp/startup.sh
 
@@ -31,3 +35,4 @@ RUN mkdir -p /run/nginx
 EXPOSE 80 443 4000
 
 CMD sh /tmp/startup.sh
+# CMD ["sh", "-c", "/tmp/startup.sh ; /usr/bin/supervisord -c /etc/supervisord.conf"]
